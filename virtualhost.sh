@@ -8,10 +8,11 @@ domain=$2
 rootDir=$3
 owner=$(who am i | awk '{print $1}')
 email='webmaster@localhost'
-sitesEnable='/etc/apache2/sites-enabled/'
-sitesAvailable='/etc/apache2/sites-available/'
-userDir='/var/www/'
-sitesAvailabledomain=$sitesAvailable$domain.conf
+vhosts='/usr/local/etc/apache2/2.4/vhosts/'
+sitesDomain=$vhosts$domain.conf
+# For mac os user "Sites" root dir, change for 
+# userDir="/Users/$owner/Sites/"
+userDir="/var/www" 
 
 ### don't modify from here unless you know what you are doing ####
 
@@ -46,7 +47,7 @@ rootDir=$userDir$rootDir
 if [ "$action" == 'create' ]
 	then
 		### check if domain already exists
-		if [ -e $sitesAvailabledomain ]; then
+		if [ -e $sitesDomain ]; then
 			echo -e $"This domain already exists.\nPlease Try Another one"
 			exit;
 		fi
@@ -85,7 +86,7 @@ if [ "$action" == 'create' ]
 			ErrorLog /var/log/apache2/$domain-error.log
 			LogLevel error
 			CustomLog /var/log/apache2/$domain-access.log combined
-		</VirtualHost>" > $sitesAvailabledomain
+		</VirtualHost>" > $sitesDomain
 		then
 			echo -e $"There is an ERROR creating $domain file"
 			exit;
@@ -103,23 +104,23 @@ if [ "$action" == 'create' ]
 		fi
 
 		if [ "$owner" == "" ]; then
-			chown -R $(whoami):$(whoami) $rootDir
+			chown -R $(whoami):staff $rootDir
 		else
-			chown -R $owner:$owner $rootDir
+			chown -R $owner:staff $rootDir
 		fi
 
 		### enable website
-		a2ensite $domain
+		# a2ensite $domain
 
 		### restart Apache
-		/etc/init.d/apache2 reload
+		apachectl -k restart
 
 		### show the finished message
 		echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
 		exit;
 	else
 		### check whether domain already exists
-		if ! [ -e $sitesAvailabledomain ]; then
+		if ! [ -e $sitesDomain ]; then
 			echo -e $"This domain does not exist.\nPlease try another one"
 			exit;
 		else
@@ -128,13 +129,13 @@ if [ "$action" == 'create' ]
 			sed -i "/$newhost/d" /etc/hosts
 
 			### disable website
-			a2dissite $domain
+			# a2dissite $domain
 
 			### restart Apache
-			/etc/init.d/apache2 reload
+			apachectl -k restart
 
 			### Delete virtual host rules files
-			rm $sitesAvailabledomain
+			rm $sitesDomain
 		fi
 
 		### check if directory exists or not

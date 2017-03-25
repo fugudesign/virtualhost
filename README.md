@@ -1,7 +1,12 @@
 Virtualhost Manage Script
 ===========
 
-Bash Script to allow create or delete apache/nginx virtual hosts on Ubuntu on a quick way.
+Bash Script to allow create or delete apache virtual hosts on Mac OS on a quick way.
+
+## Requirements ##
+
+This script correspond to a specific apache vhosts configuration.
+This tutorial could help you to check your configuration: https://jason.pureconcepts.net/2014/11/configure-apache-virtualhost-mac-os-x/
 
 ## Installation ##
 
@@ -23,10 +28,8 @@ $ sudo cp /path/to/virtualhost.sh /usr/local/bin/virtualhost
 
 ```bash
 $ cd /usr/local/bin
-$ wget -O virtualhost https://raw.githubusercontent.com/RoverWire/virtualhost/master/virtualhost.sh
+$ wget -O virtualhost https://github.com/fugudesign/virtualhost/blob/master/virtualhost.sh
 $ chmod +x virtualhost
-$ wget -O virtualhost-nginx https://raw.githubusercontent.com/RoverWire/virtualhost/master/virtualhost-nginx.sh
-$ chmod +x virtualhost-nginx
 ```
 
 ## Usage ##
@@ -72,10 +75,4 @@ For Apache:
 
 ```bash
 $ sudo cp /path/to/locale/<language>/virtualhost.mo /usr/share/locale/<language>/LC_MESSAGES/
-```
-
-For NGINX:
-
-```bash
-$ sudo cp /path/to/locale/<language>/virtualhost-nginx.mo /usr/share/locale/<language>/LC_MESSAGES/
 ```

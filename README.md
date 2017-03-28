@@ -28,7 +28,7 @@ $ sudo cp /path/to/virtualhost.sh /usr/local/bin/virtualhost
 
 ```bash
 $ cd /usr/local/bin
-$ wget -O virtualhost https://github.com/fugudesign/virtualhost/blob/master/virtualhost.sh
+$ wget -O virtualhost https://raw.githubusercontent.com/fugudesign/virtualhost/master/virtualhost.sh
 $ chmod +x virtualhost
 ```
 

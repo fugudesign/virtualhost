@@ -94,15 +94,6 @@ if [ "$action" == 'create' ]
 			echo -e $"\nNew Virtual Host Created\n"
 		fi
 
-		### Add domain in /etc/hosts
-		if ! echo "127.0.0.1	$domain" >> /etc/hosts
-		then
-			echo $"ERROR: Not able to write in /etc/hosts"
-			exit;
-		else
-			echo -e $"Host added to /etc/hosts file \n"
-		fi
-
 		if [ "$owner" == "" ]; then
 			chown -R $(whoami):staff $rootDir
 		else
@@ -124,13 +115,6 @@ if [ "$action" == 'create' ]
 			echo -e $"This domain does not exist.\nPlease try another one"
 			exit;
 		else
-			### Delete domain in /etc/hosts
-			newhost=${domain//./\\.}
-			sed -i "/$newhost/d" /etc/hosts
-
-			### disable website
-			# a2dissite $domain
-
 			### restart Apache
 			apachectl -k restart
 

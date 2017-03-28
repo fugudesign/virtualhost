@@ -1,12 +1,17 @@
 Virtualhost Manage Script
 ===========
 
-Bash Script to allow create or delete apache virtual hosts on Mac OS on a quick way.
+Bash Script to allow create or delete apache virtual hosts on Mac OS with dnsmasq on a quick way.
 
 ## Requirements ##
 
 This script correspond to a specific apache vhosts configuration.
+
 This tutorial could help you to check your configuration: https://jason.pureconcepts.net/2014/11/configure-apache-virtualhost-mac-os-x/
+
+
+This version is adapted to the dnsmasq configuration. Please check your dnsmasq extensions to adapt the script call.
+See: https://getgrav.org/blog/macos-sierra-apache-mysql-vhost-apc
 
 ## Installation ##
 

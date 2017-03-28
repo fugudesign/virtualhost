@@ -33,7 +33,7 @@ $ sudo cp /path/to/virtualhost.sh /usr/local/bin/virtualhost
 
 ```bash
 $ cd /usr/local/bin
-$ wget -O virtualhost https://raw.githubusercontent.com/fugudesign/virtualhost/feature-dnsmasq/virtualhost.sh
+$ wget -O virtualhost https://raw.githubusercontent.com/fugudesign/virtualhost/dnsmasq/virtualhost.sh
 $ chmod +x virtualhost
 ```
 
